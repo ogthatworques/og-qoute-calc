@@ -48,62 +48,80 @@ export default function App() {
     return sum;
   }, [service, condition, truck, addons]);
 
-  const button = (active) =>
-    `p-3 rounded-xl font-bold ${active ? "bg-orange-500" : "bg-gray-800"}`;
+  const buttonStyle = (active) => ({
+    padding: "10px",
+    borderRadius: "8px",
+    fontWeight: "bold",
+    border: "none",
+    backgroundColor: active ? "#f97316" : "#333",
+    color: "white",
+    cursor: "pointer",
+  });
 
   return (
-    <div className="min-h-screen bg-black text-white p-4">
-      <div className="max-w-md mx-auto space-y-5">
-        <h1 className="text-2xl font-bold text-center">
-          OGthatWorques Calculator
-        </h1>
+    <div style={{ background: "#000", color: "#fff", minHeight: "100vh", padding: "20px" }}>
+      <div style={{ maxWidth: "400px", margin: "0 auto" }}>
 
-        <div className="bg-gray-900 p-4 rounded-xl text-center">
-          <div className="text-gray-400">Estimated Total</div>
-          <div className="text-3xl font-bold">${total}</div>
+        <h1 style={{ textAlign: "center" }}>OGthatWorques Calculator</h1>
+
+        {/* TOTAL */}
+        <div style={{
+          background: "#111",
+          padding: "15px",
+          borderRadius: "10px",
+          textAlign: "center",
+          marginBottom: "20px"
+        }}>
+          <div style={{ color: "#aaa" }}>Estimated Total</div>
+          <div style={{ fontSize: "28px", fontWeight: "bold" }}>${total}</div>
         </div>
 
+        {/* SERVICE */}
         <div>
-          <h2 className="mb-2 font-bold">Service</h2>
-          <div className="grid grid-cols-2 gap-2">
-            <button onClick={() => setService("basic")} className={button(service === "basic")}>Basic</button>
-            <button onClick={() => setService("interior")} className={button(service === "interior")}>Interior</button>
-            <button onClick={() => setService("full")} className={button(service === "full")}>Full</button>
-            <button onClick={() => setService("heavy")} className={button(service === "heavy")}>Heavy</button>
+          <h3>Service</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+            <button onClick={() => setService("basic")} style={buttonStyle(service==="basic")}>Basic</button>
+            <button onClick={() => setService("interior")} style={buttonStyle(service==="interior")}>Interior</button>
+            <button onClick={() => setService("full")} style={buttonStyle(service==="full")}>Full</button>
+            <button onClick={() => setService("heavy")} style={buttonStyle(service==="heavy")}>Heavy</button>
           </div>
         </div>
 
+        {/* CONDITION */}
         <div>
-          <h2 className="mb-2 font-bold">Condition</h2>
-          <div className="grid grid-cols-3 gap-2">
-            <button onClick={() => setCondition("light")} className={button(condition === "light")}>Light</button>
-            <button onClick={() => setCondition("moderate")} className={button(condition === "moderate")}>Moderate</button>
-            <button onClick={() => setCondition("heavy")} className={button(condition === "heavy")}>Heavy</button>
+          <h3>Condition</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "10px" }}>
+            <button onClick={() => setCondition("light")} style={buttonStyle(condition==="light")}>Light</button>
+            <button onClick={() => setCondition("moderate")} style={buttonStyle(condition==="moderate")}>Moderate</button>
+            <button onClick={() => setCondition("heavy")} style={buttonStyle(condition==="heavy")}>Heavy</button>
           </div>
         </div>
 
+        {/* TRUCK */}
         <div>
-          <h2 className="mb-2 font-bold">Truck Type</h2>
-          <div className="grid grid-cols-2 gap-2">
-            <button onClick={() => setTruck("daycab")} className={button(truck === "daycab")}>Day Cab</button>
-            <button onClick={() => setTruck("sleeper")} className={button(truck === "sleeper")}>Sleeper</button>
+          <h3>Truck Type</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+            <button onClick={() => setTruck("daycab")} style={buttonStyle(truck==="daycab")}>Day Cab</button>
+            <button onClick={() => setTruck("sleeper")} style={buttonStyle(truck==="sleeper")}>Sleeper</button>
           </div>
         </div>
 
+        {/* ADDONS */}
         <div>
-          <h2 className="mb-2 font-bold">Add-Ons</h2>
-          <div className="grid grid-cols-2 gap-2">
-            <button onClick={() => toggleAddon("engine")} className={button(addons.includes("engine"))}>
+          <h3>Add-Ons</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+            <button onClick={() => toggleAddon("engine")} style={buttonStyle(addons.includes("engine"))}>
               Engine Bay
             </button>
-            <button onClick={() => toggleAddon("degrease")} className={button(addons.includes("degrease"))}>
+            <button onClick={() => toggleAddon("degrease")} style={buttonStyle(addons.includes("degrease"))}>
               Degrease
             </button>
-            <button onClick={() => toggleAddon("odor")} className={button(addons.includes("odor"))}>
+            <button onClick={() => toggleAddon("odor")} style={buttonStyle(addons.includes("odor"))}>
               Odor Removal
             </button>
           </div>
         </div>
+
       </div>
     </div>
   );
